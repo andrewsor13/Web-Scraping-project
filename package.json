@@ -1,0 +1,25 @@
+{
+  "name": "web-scraping-project",
+  "version": "1.0.0",
+  "description": "Logo matching",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewsor13/Web-Scraping-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/andrewsor13/Web-Scraping-project/issues"
+  },
+  "homepage": "https://github.com/andrewsor13/Web-Scraping-project#readme",
+  "dependencies": {
+    "parquetjs-lite": "^0.8.7",
+    "puppeteer": "^24.31.0"
+  }
+}
