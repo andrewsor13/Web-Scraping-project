@@ -1,17 +1,21 @@
 const puppeteer = require("puppeteer");
-const duckdb = require("duckdb");
-
-async function parsedData(path) {
-  const db = new duckdb.Database(":memory:");
-  const conn = db.connect();
-
-  const result = await conn.allAsync(`SELECT domain FROM '${path}'`);
-
-  return result.map((row) => row.domain);
-}
+const parsedData = require("./lib/parseData");
+const getLogo = require("./lib/getLogo");
 
 (async () => {
-  const domains = await parsedData("domains.parquet");
-  console.log("Total domenii:", domains.length);
-  console.log(domains.slice(0, 10));
+  const domains = await parsedData("logos.snappy.parquet");
+
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  const domain = domains[4];
+
+  try {
+    await page.goto("https://" + domain);
+  } catch {
+    await page.goto("http://" + domain);
+  }
+
+  const logoPath = await getLogo(page, domain);
+  console.log("Saved logo:", logoPath);
 })();
